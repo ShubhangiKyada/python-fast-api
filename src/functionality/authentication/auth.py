@@ -1,16 +1,18 @@
 from database.database import Sessionlocal
 from src.resource.user.model import User
+from werkzeug.security import generate_password_hash,check_password_hash
 
 db = Sessionlocal()
 
 def create_user(user_details):
+
     user_info = User(
         first_name=user_details.get("first_name"),
         last_name=user_details.get("last_name"),
         name=user_details.get("name"),
         email=user_details.get("email"),
         phone_no=user_details.get("phone_no"),
-        password=user_details.get("password"),
+        password=generate_password_hash(user_details.get("password")),
     )
     db.add(user_info)
     db.commit()
@@ -18,34 +20,57 @@ def create_user(user_details):
 
     return "successfully created"
 
-def log_in_user(user_details):
-    email = user_details.get("email")
-    phone_no = user_details.get("phone_no")
-    password = user_details.get("password")
 
-    user_data = None
+def log_in_user(user_details):
+    email = user_details.get('email')
+    phone_no = user_details.get('phone_no')
+    password = user_details.get('password')
 
     if email:
-        user_data = db.query(User).filter_by(email=email, password=password).first()
-
-    if phone_no and user_data is None:
-        user_data = db.query(User).filter_by(phone_no=phone_no, password=password).first()
+        user_data = db.query(User).filter_by(email=email).first()
+        check_password_hash(user_data.password,password)
+    
+    if phone_no:
+        user_data = db.query(User).filter_by(phone_no=str(phone_no)).first()
+        check_password_hash(user_data.password,password)
 
     if user_data:
-        return "login successfully"
+        return "user login successfully"
+    
+    return "user_not found"
 
-    return "user not found"
+
+
+# def log_in_user(user_details):
+#     email = user_details.get("email")
+#     phone_no = user_details.get("phone_no")
+#     password = user_details.get("password")
+
+
+#     if email:
+#         user_data = db.query(User).filter_by(email=email).first()
+#         check_password_hash(user_data.password,password)
+
+#     if phone_no:
+#         user_data = db.query(User).filter_by(phone_no=phone_no).first()
+#         check_password_hash(user_data.password,password)
+
+#     if user_data:
+#         return "login successfully"
+
+#     return "user not found"
 
 def change_password(user_details ):
     name = user_details.get("name")
     password = user_details.get("password")
-    new_password=user_details.get("new_password")
+    new_password=generate_password_hash(user_details.get("new_password"))
 
-    user_data = None
+  
 
     if name:
-        user_data = db.query(User).filter_by(name=name, password=password).first()
-
+        user_data = db.query(User).filter_by(name=name).first()
+        check_password_hash(user_data.password,password)
+        
     if user_data:
         user_data.password = new_password
         db.commit()
