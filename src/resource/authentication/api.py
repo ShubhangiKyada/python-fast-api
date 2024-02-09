@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from src.resource.authentication.schema import UserRequest,UserLoginSchema,UserChangePasswordSchema,UserInformation
-from src.functionality.authentication.auth import create_user,log_in_user,change_password,get_user_info
+from src.functionality.authentication.auth import create_user,login_user,change_password,get_user_info
 from src.resource.authentication.serializer import serializer_use 
 auth_router= APIRouter()
 
@@ -10,8 +10,9 @@ def create_user_api(user_data:UserRequest):
     return user_info
 
 @auth_router.post("/login",status_code=200)
-def log_in_api(user_data:UserLoginSchema):
-    user_info=log_in_user(user_data.model_dump())
+def login_api(user_data:UserLoginSchema):
+    
+    user_info=login_user(user_data.model_dump())
     return user_info
 
 @auth_router.post("/change_password",status_code=200)

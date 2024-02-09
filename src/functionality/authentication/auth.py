@@ -1,7 +1,7 @@
 from database.database import Sessionlocal
 from src.resource.user.model import User
 from werkzeug.security import generate_password_hash,check_password_hash
-
+from sqlalchemy.sql import or_
 db = Sessionlocal()
 
 def create_user(user_details):
@@ -21,19 +21,16 @@ def create_user(user_details):
     return "successfully created"
 
 
-def log_in_user(user_details):
+def login_user(user_details):
     email = user_details.get('email')
     phone_no = user_details.get('phone_no')
     password = user_details.get('password')
 
-    if email:
-        user_data = db.query(User).filter_by(email=email).first()
+    if email or phone_no:
+        user_data = db.query(User).filter(or_(email==email,phone_no==phone_no)).first()
         check_password_hash(user_data.password,password)
     
-    if phone_no:
-        user_data = db.query(User).filter_by(phone_no=str(phone_no)).first()
-        check_password_hash(user_data.password,password)
-
+    
     if user_data:
         return "user login successfully"
     
