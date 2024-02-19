@@ -1,5 +1,5 @@
 
-def serializer_use(users_data):
+def getuser_serializer(users_data):
     if not isinstance(users_data,list):
         users_data=[users_data]
 
@@ -22,3 +22,17 @@ def serializer_use(users_data):
         )
         
     return extra_data
+
+def  user_detail_serializer(users_data):
+    if not isinstance(users_data,list):
+        users_data=[users_data]
+    users_data=users_data[0]
+
+    sorted_data={
+        "id":users_data.id,
+        "name":users_data.name,
+        "email":users_data.email,
+        "phone_no":users_data.phone_no,
+
+    }
+    return sorted_data
