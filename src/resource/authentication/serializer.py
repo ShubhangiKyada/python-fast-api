@@ -3,9 +3,7 @@ def getuser_serializer(users_data):
     if not isinstance(users_data,list):
         users_data=[users_data]
 
-
     extra_data=[]
-
 
     for record in users_data:
         extra_data.append(
