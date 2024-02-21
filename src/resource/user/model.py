@@ -1,4 +1,4 @@
-from sqlalchemy import VARCHAR, Boolean,Integer, String, Column,DateTime
+from sqlalchemy import VARCHAR, Boolean, String, Column,DateTime
 from database.database import Base
 from uuid import uuid4
 from datetime import datetime
