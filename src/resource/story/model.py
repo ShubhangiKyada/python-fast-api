@@ -9,4 +9,3 @@ class Story(Base):
     id = Column(String(256),primary_key=True,default= uuid4())
     user_id = Column(VARCHAR(256),ForeignKey(Post.id,ondelete="CASCADE"))
     created_at = Column(DateTime, default=datetime.utcnow())
-    is_active = Column(Boolean, default=True)

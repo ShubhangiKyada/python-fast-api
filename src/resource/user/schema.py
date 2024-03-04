@@ -10,3 +10,4 @@ class UserRequest(BaseModel):
     email : Optional[str]
     phone_no : int
     password :str
+    

@@ -1,3 +1,6 @@
 from pydantic import BaseModel
-from typing import Optional
-
+class CommentRequest(BaseModel):
+    
+    photo : str
+   
+   

@@ -8,6 +8,7 @@ class Post(Base):
     __tablename__ = "Post"
     id = Column(VARCHAR(256),primary_key=True,default= uuid4())
     user_id = Column(VARCHAR(256),ForeignKey(User.id,ondelete="CASCADE"))
+    photo = Column(VARCHAR(255))
     description=Column(VARCHAR(30))
     location=Column(VARCHAR(30), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow())
@@ -15,3 +16,4 @@ class Post(Base):
     is_active = Column(Boolean, default=True)
     is_deleted = Column(Boolean, default=False)
     
+
