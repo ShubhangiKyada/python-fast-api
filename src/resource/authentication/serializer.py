@@ -21,6 +21,8 @@ def getuser_serializer(users_data):
         
     return extra_data
 
+#create validator serializer
+
 def  user_detail_serializer(users_data):
     if not isinstance(users_data,list):
         users_data=[users_data]

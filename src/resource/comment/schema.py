@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 class CommentRequest(BaseModel):
     
-    photo : str
+    post_id:str
+    comment :str
    
    

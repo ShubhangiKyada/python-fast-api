@@ -6,6 +6,10 @@ from src.config import Config
 from src.resource.user.model import User
 from src.resource.authentication.model import Otp
 from alembic import context
+from src.resource.post.model import Post
+from src.resource.like.model import Like
+from src.resource.story.model import Story
+from src.resource.comment.model import Comment
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
