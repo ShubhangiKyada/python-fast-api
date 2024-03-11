@@ -7,7 +7,6 @@ def serializer_for_getpost(post_data,comment_data,like_data):
         
     if not isinstance(comment_data,list):
         comment_data = [comment_data]
-       
     filter_data=[]
 
 
@@ -28,9 +27,9 @@ def serializer_for_getpost(post_data,comment_data,like_data):
 
         for like in like_data:
             if  like.post_id == record.id :
-                post_info['likes'].append(like.count)
+                post_info['likes']=like.count
 
-            
+    filter_data.append(post_info)        
     return filter_data
 
 

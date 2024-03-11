@@ -7,616 +7,641 @@
 	},
 	"item": [
 		{
-			"name": "login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"phone_no\": \"0\",\r\n    \"password\": \"string2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone_no\": \"0\",\r\n    \"password\": \"string2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
 						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/login",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "signup",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"phone_no\": 0,\n  \"password\": \"string\"\n}"
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/signup",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"signup"
-					]
+				{
+					"name": "change_password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFmYjQzN2U3LWVmOWMtNDc2OC1hODJmLWUzNjVmZjE2MzJhYSIsIm5hbWUiOiJzdHJpbmciLCJlbWFpbCI6InN0cmluZyIsInBob25lX25vIjoiMCIsImV4cCI6MTcxMDQyMTk0Mn0.AraKkVtrjeWVF2fAQDc0CCObfXsSexA2CBv8XTol7pE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n  \"password\": \"string\",\r\n  \"new_password\": \"string2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/change_password?",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"change_password"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "change_password",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFmYjQzN2U3LWVmOWMtNDc2OC1hODJmLWUzNjVmZjE2MzJhYSIsIm5hbWUiOiJzdHJpbmciLCJlbWFpbCI6InN0cmluZyIsInBob25lX25vIjoiMCIsImV4cCI6MTcxMDQyMTk0Mn0.AraKkVtrjeWVF2fAQDc0CCObfXsSexA2CBv8XTol7pE",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\r\n  \"password\": \"string\",\r\n  \"new_password\": \"string2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "post",
+			"item": [
+				{
+					"name": "create_post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"photo\": \"shubhangi\",\n  \"description\": \"second photo\",\n  \"location\": \"surat\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/post",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"post"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/change_password?",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"change_password"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null
+				{
+					"name": "view_post",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/post?user_id=1fb437e7-ef9c-4768-a82f-e365ff1632aa",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"post"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1fb437e7-ef9c-4768-a82f-e365ff1632aa"
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "user_info",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{token}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/user_info?",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"user_info"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null
+				{
+					"name": "update_post",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"photo\": \"shubhangi\",\n  \"description\": \"second photo\",\n  \"location\": \"mumbai\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/post/6ce9ec0a-dcef-4413-93c5-2ed1ed5246db",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"post",
+								"6ce9ec0a-dcef-4413-93c5-2ed1ed5246db"
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete_user",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM0YmFhN2RiLTNiMWMtNDI0OS04ZjVkLWEzMzY3NDcxZTZmNSIsIm5hbWUiOiJzdHJpbmciLCJlbWFpbCI6InN0cmluZyIsInBob25lX25vIjoiMCIsImV4cCI6MTcwOTExODgyMX0.9CR2ati2mAsZCcZ-MioBWcfJjSf5Qj-IaOdYKXhNDvg"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/user_detalis/34baa7db-3b1c-4249-8f5d-a3367471e6f5?id=34baa7db-3b1c-4249-8f5d-a3367471e6f5",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"user_detalis",
-						"34baa7db-3b1c-4249-8f5d-a3367471e6f5"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "34baa7db-3b1c-4249-8f5d-a3367471e6f5"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create_post",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"photo\": \"shubhangi\",\n  \"description\": \"second photo\",\n  \"location\": \"surat\"\n}"
+					"response": []
 				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/post",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"post"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "view_post",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/post?user_id=1fb437e7-ef9c-4768-a82f-e365ff1632aa",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"post"
-					],
-					"query": [
-						{
-							"key": "user_id",
-							"value": "1fb437e7-ef9c-4768-a82f-e365ff1632aa"
+				{
+					"name": "delete_post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/delete_post?post_data=6ce9ec0a-dcef-4413-93c5-2ed1ed5246db",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"delete_post"
+							],
+							"query": [
+								{
+									"key": "post_data",
+									"value": "6ce9ec0a-dcef-4413-93c5-2ed1ed5246db"
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update_post",
-			"request": {
-				"method": "PATCH",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
 					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"photo\": \"shubhangi\",\n  \"description\": \"second photo\",\n  \"location\": \"mumbai\"\n}"
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/post?post_id=6ce9ec0a-dcef-4413-93c5-2ed1ed5246db",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"post"
-					],
-					"query": [
-						{
-							"key": "post_id",
-							"value": "6ce9ec0a-dcef-4413-93c5-2ed1ed5246db"
-						}
-					]
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete_post",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "accept",
-						"value": "*/*"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/delete_post?post_data=6ce9ec0a-dcef-4413-93c5-2ed1ed5246db",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"delete_post"
-					],
-					"query": [
-						{
-							"key": "post_data",
-							"value": "6ce9ec0a-dcef-4413-93c5-2ed1ed5246db"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "add_story",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"photo\": \"string......\"\n}"
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/story",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"story"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "view_stroy",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/stories/1fb437e7-ef9c-4768-a82f-e365ff1632aa",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"stories",
-						"1fb437e7-ef9c-4768-a82f-e365ff1632aa"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "add_comment",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"post_id\": \"32c502fa-669c-42c0-917c-4acbc75b04b4\",\n  \"comment\": \"string\"\n}"
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/comment",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"comment"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "view_comment",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/comment?post_id=32c502fa-669c-42c0-917c-4acbc75b04b4",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"comment"
-					],
-					"query": [
-						{
-							"key": "post_id",
-							"value": "32c502fa-669c-42c0-917c-4acbc75b04b4"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete_comment",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "accept",
-						"value": "*/*"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:8000/comment?post_id=6614f751-1f18-4bf4-b2cb-5931124c7fe5",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"comment"
-					],
-					"query": [
-						{
-							"key": "post_id",
-							"value": "6614f751-1f18-4bf4-b2cb-5931124c7fe5"
-						}
-					]
-				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "like",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accept",
-						"value": "application/json"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/v2/post?post_id=32c502fa-669c-42c0-917c-4acbc75b04b4",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"v2",
-						"post"
-					],
-					"query": [
-						{
-							"key": "post_id",
-							"value": "32c502fa-669c-42c0-917c-4acbc75b04b4"
+			"item": [
+				{
+					"name": "like",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/v2/post?post_id=32c502fa-669c-42c0-917c-4acbc75b04b4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v2",
+								"post"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "32c502fa-669c-42c0-917c-4acbc75b04b4"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "unlike",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/v2/post?post_id=32c502fa-669c-42c0-917c-4acbc75b04b4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"v2",
+								"post"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "32c502fa-669c-42c0-917c-4acbc75b04b4"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "unlike",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "accept",
-						"value": "*/*"
-					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:8000/v2/post?post_id=32c502fa-669c-42c0-917c-4acbc75b04b4",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8000",
-					"path": [
-						"v2",
-						"post"
-					],
-					"query": [
-						{
-							"key": "post_id",
-							"value": "32c502fa-669c-42c0-917c-4acbc75b04b4"
+			"name": "comment",
+			"item": [
+				{
+					"name": "add_comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"post_id\": \"32c502fa-669c-42c0-917c-4acbc75b04b4\",\n  \"comment\": \"string.....................................\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "view_comment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment?post_id=32c502fa-669c-42c0-917c-4acbc75b04b4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "32c502fa-669c-42c0-917c-4acbc75b04b4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment?post_id=6614f751-1f18-4bf4-b2cb-5931124c7fe5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment"
+							],
+							"query": [
+								{
+									"key": "post_id",
+									"value": "6614f751-1f18-4bf4-b2cb-5931124c7fe5"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "story",
+			"item": [
+				{
+					"name": "add_story",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"photo\": \"string......\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/story",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"story"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view_stroy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/stories/1fb437e7-ef9c-4768-a82f-e365ff1632aa",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"stories",
+								"1fb437e7-ef9c-4768-a82f-e365ff1632aa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"phone_no\": 0,\n  \"password\": \"string\"\n}"
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/signup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user_info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/user_info?",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"user_info"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM0YmFhN2RiLTNiMWMtNDI0OS04ZjVkLWEzMzY3NDcxZTZmNSIsIm5hbWUiOiJzdHJpbmciLCJlbWFpbCI6InN0cmluZyIsInBob25lX25vIjoiMCIsImV4cCI6MTcwOTExODgyMX0.9CR2ati2mAsZCcZ-MioBWcfJjSf5Qj-IaOdYKXhNDvg"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/user_detalis/34baa7db-3b1c-4249-8f5d-a3367471e6f5?id=34baa7db-3b1c-4249-8f5d-a3367471e6f5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"user_detalis",
+								"34baa7db-3b1c-4249-8f5d-a3367471e6f5"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "34baa7db-3b1c-4249-8f5d-a3367471e6f5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

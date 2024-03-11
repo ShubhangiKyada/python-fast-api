@@ -12,7 +12,7 @@ def add_story_api(story_data:StroyRequest, user_data:Annotated[dict, Depends(aut
     return post_info
     
 
-@story_router.get("/stories/{user_id}",status_code=200)
+@story_router.get("/story/{user_id}",status_code=200)
 def  view_stories_api(user_id):
     story_info=view_story(user_id)
     return story_info

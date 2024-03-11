@@ -20,7 +20,7 @@ def create_story(story_details, user_data):
     db.commit()
     db.close()
 
-    return JSONResponse({"Message": "Story created"}, status_code=201)
+    return JSONResponse({"Message": "Story created"})
 
 
 def view_story(user_id):

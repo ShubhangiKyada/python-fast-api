@@ -29,7 +29,7 @@ def get_post(user_id):
     post_data = (
         db.query(Post)
         .filter_by(user_id=user_id, is_active=True, is_deleted=False)
-        .first()
+        .all()
     )
     post_list=[]
     
@@ -42,7 +42,7 @@ def get_post(user_id):
             filter_data = serializer_for_getpost(post, comment_data, like_data)
             
             post_list.append(filter_data)
-        return JSONResponse({"Post": post_list})
+        return JSONResponse({"Data": post_list})
     else:
             raise HTTPException(status_code=404, detail="Post not found")
 
@@ -80,5 +80,9 @@ def delete_post(post_id, user_id):
             post_data.is_deleted = True
             db.commit()
             return  JSONResponse({"Message": "Post deleted Successfully"})
+        else:
+            raise HTTPException(status_code=209,detail="You can't delete this post")
+    else:
+        raise HTTPException(status_code=404,detail="Post not found")    
 
 

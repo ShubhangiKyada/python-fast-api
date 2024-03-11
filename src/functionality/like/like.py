@@ -35,10 +35,9 @@ def unlike(post_id):
         if existing_likes:
             like_info.count=existing_likes-1
         else:
-            raise HTTPException(status_code=404,detail=" Like the Post First")
+            raise HTTPException(status_code=403,detail=" Like the Post First")
         db.commit()
         db.close()
         return JSONResponse({"Message": "Post is Unliked"})
     else:
         raise HTTPException(status_code=404, detail="Post not found")
-     

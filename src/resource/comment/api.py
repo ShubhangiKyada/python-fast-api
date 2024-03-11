@@ -11,12 +11,12 @@ def add_comment_api( comment_data:CommentRequest,user_data: Annotated[dict, Depe
     comment_info = create_comment(comment_data.model_dump(), user_data.get("id"))
     return comment_info
 
-@comment_router.get("/comment",status_code=200)
-def view_comment_api(post_id:str):
+@comment_router.get("/comment/{post_id}",status_code=200)
+def view_comment_api(post_id):
     comment_info = view_comment(post_id)
     return comment_info
 
-@comment_router.delete("/comment",status_code=204)
-def delete_comment_api(post_id:str,user_data: Annotated[dict, Depends(authorization)]):
+@comment_router.delete("/comment/{post_id}",status_code=204)
+def delete_comment_api(post_id,user_data: Annotated[dict, Depends(authorization)]):
     comment_info = delete_comment(post_id,user_data.get("id"))
     return comment_info

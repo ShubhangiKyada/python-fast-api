@@ -51,4 +51,4 @@ def  delete_user(user_id,user_details):
             db.close()
             return JSONResponse({"message":"User deletd Successfully"})
     else:
-        raise HTTPException(status_code=401,detail="Invalid User id")
+        raise HTTPException(status_code=409,detail="Invalid User id")

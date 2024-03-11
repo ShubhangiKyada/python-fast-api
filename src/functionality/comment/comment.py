@@ -1,5 +1,6 @@
 from database.database import Sessionlocal
 from src.resource.comment.model import Comment
+from src.resource.comment.serializer import view_commnet_serializer
 from fastapi.responses import JSONResponse
 from fastapi import HTTPException
 import uuid
@@ -38,7 +39,12 @@ def create_comment(comment_details, user_id):
     
 def view_comment(post_id):
     comment_info = db.query(Comment).filter_by(post_id = post_id).all()
-    return comment_info
+    if  comment_info:
+        filter_data=view_commnet_serializer(comment_info)
+        return JSONResponse({"Data":filter_data})
+    else:
+        raise HTTPException(status_code=404,detail="Comment not found")
+    
 
 def delete_comment(post_id, user_id):
     comment_info_data= (db.query(Comment).filter_by(post_id = post_id).first())
